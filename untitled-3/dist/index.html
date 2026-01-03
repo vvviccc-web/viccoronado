@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Most Beautiful Mistake | VIC</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #8B0000;
+      --void: #0A0A0A;
+      --light: #EAEAE5;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--void);
+      color: var(--light);
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      mix-blend-mode: overlay;
+    }
+
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+      animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .title-container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 15vw, 18rem);
+      line-height: 0.85;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .title-line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .word {
+      display: inline-block;
+      transform: translateY(120%);
+      animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .word:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .word:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .word:nth-child(3) {
+      animation-delay: 0.4s;
+      color: var(--red);
+    }
+
+    .word:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes slide-up {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .tagline {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0;
+      animation: fade-in 1s ease 1.2s forwards;
+    }
+
+    @keyframes fade-in {
+      to {
+        opacity: 0.7;
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 5vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      animation: float-hint 2s ease-in-out infinite;
+    }
+
+    @keyframes float-hint {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+    }
+
+    .section {
+      position: relative;
+      padding: 10vh 5vw;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .principle {
+      aspect-ratio: 1;
+      padding: clamp(2rem, 6vw, 5rem);
+      border: 1px solid rgba(234, 234, 229, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      background: var(--void);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .principle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--red);
+      transform: translateY(100%);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .principle:hover::before {
+      transform: translateY(0);
+    }
+
+    .principle:hover {
+      border-color: transparent;
+    }
+
+    .principle-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .principle-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(6rem, 12vw, 12rem);
+      line-height: 0.8;
+      opacity: 0.1;
+      transition: opacity 0.6s;
+    }
+
+    .principle:hover .principle-num {
+      opacity: 0.2;
+    }
+
+    .principle-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .principle-text p {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      line-height: 1.6;
+      font-weight: 300;
+      opacity: 0.8;
+    }
+
+    .manifesto {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 10vh 5vw;
+      position: relative;
+    }
+
+    .manifesto-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .manifesto-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 12vw, 15rem);
+      line-height: 0.85;
+      margin-bottom: 5rem;
+      font-weight: 400;
+    }
+
+    .manifesto-title span {
+      display: block;
+    }
+
+    .manifesto-title .red-word {
+      color: var(--red);
+    }
+
+    .manifesto-body {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 4rem;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      line-height: 1.5;
+      font-weight: 300;
+      margin-bottom: 6rem;
+    }
+
+    .manifesto-body p {
+      margin-bottom: 2rem;
+    }
+
+    .manifesto-body strong {
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .proof-section {
+      padding: 15vh 5vw;
+      border-top: 1px solid rgba(234, 234, 229, 0.1);
+      border-bottom: 1px solid rgba(234, 234, 229, 0.1);
+    }
+
+    .proof-header {
+      max-width: 1400px;
+      margin: 0 auto 8rem;
+    }
+
+    .proof-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .proof-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 10rem);
+      line-height: 0.9;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(234, 234, 229, 0.1);
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .proof-item {
+      background: var(--void);
+      padding: clamp(3rem, 6vw, 6rem);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .proof-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--red);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .proof-item:hover::before {
+      opacity: 0.05;
+    }
+
+    .proof-item:hover {
+      transform: scale(1.02);
+      z-index: 10;
+    }
+
+    .proof-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .proof-meta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.5;
+      margin-bottom: 2rem;
+    }
+
+    .proof-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .proof-desc {
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      line-height: 1.6;
+      opacity: 0.7;
+      margin-bottom: 2rem;
+    }
+
+    .proof-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(234, 234, 229, 0.2);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .cta-zone {
+      text-align: center;
+      padding: 15vh 5vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-intro {
+      max-width: 900px;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.4;
+      font-weight: 300;
+      margin-bottom: 6rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 2rem 5rem;
+      background: transparent;
+      color: var(--light);
+      border: 2px solid var(--light);
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--red);
+      transform: translateX(-100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-button:hover::before {
+      transform: translateX(0);
+    }
+
+    .cta-button:hover {
+      border-color: var(--red);
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .blood-drop {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: drop 1.5s ease-out forwards;
+      z-index: 999;
+    }
+
+    @keyframes drop {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .impact-message {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .impact-message.active {
+      opacity: 1;
+    }
+
+    .impact-message.blood-fade {
+      background: #8B0000;
+      opacity: 1;
+    }
+
+    .impact-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 12rem);
+      line-height: 0.9;
+      text-align: center;
+      color: var(--red);
+      transition: opacity 0.5s;
+    }
+
+    .impact-message.blood-fade .impact-text {
+      opacity: 0;
+    }
+
+    .blood-splash {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      animation: splash 0.8s ease-out forwards;
+    }
+
+    @keyframes splash {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(2) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 968px) {
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        aspect-ratio: auto;
+        min-height: 60vh;
+      }
+
+      .manifesto-body {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <section class="hero">
+    <div class="title-container">
+      <h1>
+        <span class="title-line">
+          <span class="word">THE</span>
+        </span>
+        <span class="title-line">
+          <span class="word">MOST</span>
+          <span class="word">BEAUTIFUL</span>
+        </span>
+        <span class="title-line">
+          <span class="word">MISTAKE</span>
+        </span>
+      </h1>
+      <p class="tagline">WHERE LOGIC DIES</p>
+    </div>
+    <div class="scroll-hint">↓ SCROLL</div>
+  </section>
+
+  <section class="section">
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="principle-content">
+          <div class="principle-num">01</div>
+          <div class="principle-text">
+            <h3>REBEL</h3>
+            <p>Conformity is death. Break the rules they built to contain you. The extraordinary is born in defiance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="principle-content">
+          <div class="principle-num">02</div>
+          <div class="principle-text">
+            <h3>TRUST</h3>
+            <p>Your gut speaks truth your brain will never grasp. Stop calculating. Stop justifying. Just move.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="principle-content">
+          <div class="principle-num">03</div>
+          <div class="principle-text">
+            <h3>BURN</h3>
+            <p>Love without limits. Give everything. Let it consume you. This is the only currency that matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="manifesto-inner">
+      <h2 class="manifesto-title">
+        <span>NO</span>
+        <span class="red-word">REGRETS</span>
+      </h2>
+      <div class="manifesto-body">
+        <div>
+          <p>They want you measured. Controlled. Predictable. They want you to calculate every risk, weigh every option, choose safety over soul.</p>
+
+          <p><strong>Reject it all.</strong></p>
+
+          <p>The beautiful mistake is choosing chaos over comfort. It's burning bridges to light your way forward. It's loving so hard it transforms you.</p>
+        </div>
+        <div>
+          <p>It's trusting yourself when everyone says you're wrong.</p>
+
+          <p>You will fail. You will hurt. You will be called reckless, foolish, impossible.</p>
+
+          <p><strong>Perfect.</strong></p>
+
+          <p>Because in that destruction lies the only truth worth living: you chose yourself. You chose the irrational path. And that makes all the difference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="proof-header">
+      <div class="proof-label">// PROOF OF CONCEPT</div>
+      <h2 class="proof-title">THE WORK</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-content">
+          <div class="proof-meta">REF: 001 / AGENCY FOUNDATION</div>
+          <h3 class="proof-name">BURNINGHOUSE</h3>
+          <p class="proof-desc">Founded and developed the agency's artist-first ethos, brand identity, and long-term market positioning. Built from rebellion.</p>
+          <span class="proof-tag">STRATEGY / ETHOS</span>
+        </div>
+      </div>
+
+      <div class="proof-item">
+        <div class="proof-content">
+          <div class="proof-meta">REF: 002 / CONTENT DEVELOPMENT</div>
+          <h3 class="proof-name">THE ADULT LI(F)E</h3>
+          <p class="proof-desc">Original drama series and sonic narrative strategy. Raw, unfiltered storytelling meets calculated cultural impact.</p>
+          <span class="proof-tag">STRATEGY / NARRATIVE</span>
+        </div>
+      </div>
+
+      <div class="proof-item">
+        <div class="proof-content">
+          <div class="proof-meta">REF: 003 / FILM SCORE</div>
+          <h3 class="proof-name">MADRE</h3>
+          <p class="proof-desc">Executive music sourcing and license clearance for feature film. Every note served the story, not the algorithm.</p>
+          <span class="proof-tag">SUPERVISION</span>
+        </div>
+      </div>
+
+      <div class="proof-item">
+        <div class="proof-content">
+          <div class="proof-meta">REF: 004 / MUSIC LAUNCH</div>
+          <h3 class="proof-name">ANDRÓMEDA by LHARA</h3>
+          <p class="proof-desc">Full 360° PR and marketing campaign. Magazine covers, listening parties, cultural moment creation.</p>
+          <span class="proof-tag">PR / EVENTS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-zone">
+    <div class="cta-intro">
+      This isn't philosophy. <strong style="color: var(--red);">This is how I work.</strong> For a decade, I've transformed rebellion into strategy, chaos into cultural movements, and gut instinct into sonic identities that shift the zeitgeist.
+    </div>
+    <a href="https://www.viccoronado.com" class="cta-button" onclick="unleashChaos(event)">
+      <span>EMBRACE THE CHAOS</span>
+    </a>
+  </section>
+
+  <div class="impact-message" id="impactMessage">
+    <div class="impact-text">
+      BEAUTIFUL<br>DESTRUCTION<br>INITIATED
+    </div>
+  </div>
+
+  <script>
+    // Audio setup - you'll need to add your own audio files
+    const heartbeatAudio = new Audio('/path/to/heartbeat.mp3');
+    const gaspAudio = new Audio('/path/to/gasp.mp3');
+
+    function playHeartbeatAndGasp() {
+      heartbeatAudio.volume = 0.7;
+      heartbeatAudio.currentTime = 0;
+      heartbeatAudio.play().catch(e => console.log('Audio play failed:', e));
+      setTimeout(() => {
+        gaspAudio.volume = 0.8;
+        gaspAudio.currentTime = 0;
+        gaspAudio.play().catch(e => console.log('Audio play failed:', e));
+      }, 800);
+    }
+
+    function createBlood(x, y) {
+      const drop = document.createElement('div');
+      drop.className = 'blood-drop';
+      drop.style.left = x + 'px';
+      drop.style.top = y + 'px';
+      drop.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+      drop.style.setProperty('--ty', Math.random() * 300 + 100 + 'px');
+      document.body.appendChild(drop);
+      setTimeout(() => {
+        if (drop.parentNode) drop.remove();
+      }, 1500);
+    }
+
+    function unleashChaos(e) {
+      e.preventDefault();
+      const link = e.currentTarget.href;
+      const message = document.getElementById('impactMessage');
+      playHeartbeatAndGasp();
+      message.classList.add('active');
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight;
+          createBlood(x, y);
+        }, i * 20);
+      }
+      setTimeout(() => {
+        message.classList.add('blood-fade');
+        const splashShapes = ['●', '◆', '■', '▲', '▼', '◀', '▶'];
+        for (let i = 0; i < 30; i++) {
+          setTimeout(() => {
+            const splash = document.createElement('div');
+            splash.className = 'blood-splash';
+            splash.textContent = splashShapes[Math.floor(Math.random() * splashShapes.length)];
+            splash.style.left = Math.random() * window.innerWidth + 'px';
+            splash.style.top = Math.random() * window.innerHeight + 'px';
+            splash.style.fontSize = (Math.random() * 100 + 50) + 'px';
+            splash.style.color = Math.random() > 0.5 ? '#8B0000' : '#5C0000';
+            document.body.appendChild(splash);
+            setTimeout(() => {
+              if (splash.parentNode) splash.remove();
+            }, 800);
+          }, i * 30);
+        }
+      }, 1500);
+      setTimeout(() => {
+        window.location.href = link;
+      }, 2800);
+    }
+    document.addEventListener('mousemove', (e) => {
+      if (Math.random() > 0.97) {
+        createBlood(e.clientX, e.clientY);
+      }
+    });
+    let ticking = false;
+    document.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (Math.random() > 0.95) {
+            const x = Math.random() * window.innerWidth;
+            const y = window.scrollY + Math.random() * window.innerHeight;
+            createBlood(x, y);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
