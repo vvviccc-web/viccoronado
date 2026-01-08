@@ -1,0 +1,81 @@
+
+    // --- COUNTDOWN LOGIC START ---
+    // Config: 24 hours from NOW (Jan 8 2026). 
+    // Target: Jan 09, 2026 at 18:05 AM approx.
+    const targetDate = new Date("Jan 09, 2026 18:05:00").getTime();
+    const timerElement = document.getElementById('timer');
+    const buttonElement = document.getElementById('activationButton');
+    const buttonText = document.getElementById('buttonText');
+    const countdownWrapper = document.getElementById('countdown-wrapper');
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        // Time is up!
+        clearInterval(interval);
+        // 1. Hide the timer
+        countdownWrapper.style.display = 'none';
+        // 2. Unlock the button
+        buttonElement.classList.remove('locked');
+        buttonElement.href = "https://www.viccoronado.com/";
+        buttonText.innerText = "ENTER THE VOID";
+        return;
+      }
+      // Calculations
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Formatting with leading zeros
+      const h = (hours + (days * 24)).toString().padStart(2, '0'); // Combine days into hours for impact
+      const m = minutes.toString().padStart(2, '0');
+      const s = seconds.toString().padStart(2, '0');
+      timerElement.innerText = `${h}:${m}:${s}`;
+    }
+    // Run immediately then every second
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    // --- COUNTDOWN LOGIC END ---
+    function createBlood(x, y) {
+      const drop = document.createElement('div');
+      drop.className = 'blood-drop';
+      drop.style.left = x + 'px';
+      drop.style.top = y + 'px';
+      drop.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
+      drop.style.setProperty('--ty', `${Math.random() * 300 + 100}px`);
+      document.body.appendChild(drop);
+      setTimeout(() => drop.remove(), 1500);
+    }
+
+    function createBloodBurst(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const offsetX = (Math.random() - 0.5) * 300;
+          const offsetY = (Math.random() - 0.5) * 300;
+          createBlood(centerX + offsetX, centerY + offsetY);
+        }, i * 30);
+      }
+    }
+    document.addEventListener('mousemove', (e) => {
+      if (Math.random() > 0.97) {
+        createBlood(e.clientX, e.clientY);
+      }
+    });
+    let ticking = false;
+    document.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (Math.random() > 0.95) {
+            const x = Math.random() * window.innerWidth;
+            const y = window.scrollY + Math.random() * window.innerHeight;
+            createBlood(x, y);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+
